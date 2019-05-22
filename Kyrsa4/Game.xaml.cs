@@ -20,10 +20,13 @@ namespace Kyrsa4
         {
             InitializeComponent();
         }
-        int player = 0;
+
+        int state = 0; 
+            int player = 0;
         private void checkButton()
         {
             player = 0;
+            state = 0; 
             b1.Content = "";
             b2.Content = "";
             b3.Content = "";
@@ -50,11 +53,13 @@ namespace Kyrsa4
                 if (player == 0)
                 {
                     sender.GetType().GetProperty("Content").SetValue(sender, "X");
+                    movePlayer.Content = "Ход O";
                     player++;
                 }
                 else
                 {
                     sender.GetType().GetProperty("Content").SetValue(sender, "O");
+                    movePlayer.Content = "Ход X";
                     player--;
                 }
                 sender.GetType().GetProperty("IsEnabled").SetValue(sender, false);
@@ -68,78 +73,63 @@ namespace Kyrsa4
         
         private void  checkWin()
         {
-            if ((b1.Content == b2.Content) && (b2.Content == b3.Content))
+            if ((b1.Content.ToString() == "X" && b2.Content.ToString() == "X" && b3.Content.ToString() == "X") ||
+                (b4.Content.ToString() == "X" && b5.Content.ToString() == "X" && b6.Content.ToString() == "X") ||
+                (b7.Content.ToString() == "X" && b8.Content.ToString() == "X" && b9.Content.ToString() == "X")||
+                 (b1.Content.ToString() == "X" && b5.Content.ToString() == "X" && b9.Content.ToString() == "X") ||
+                 (b3.Content.ToString() == "X" && b5.Content.ToString() == "X" && b7.Content.ToString() == "X") ||
+                 (b1.Content.ToString() == "X" && b4.Content.ToString() == "X" && b7.Content.ToString() == "X") ||
+                 (b2.Content.ToString() == "X" && b5.Content.ToString() == "X" && b8.Content.ToString() == "X") ||
+                 (b3.Content.ToString() == "X" && b6.Content.ToString() == "X" && b9.Content.ToString() == "X")
+                )
             {
-                if (b1.Content != "")
-                {
-                    MessageBox.Show("Победили " + b2.Content);
+                    MessageBox.Show("Победили X");
                     checkButton();
-                }
+                
             }
-            if ((b4.Content == b5.Content) && (b5.Content == b6.Content))
+            else
             {
-                if (b4.Content != "")
-                {
-                    MessageBox.Show("Победили " + b4.Content);
-                    checkButton();
-                }
-            }
-            if ((b7.Content == b8.Content) && (b8.Content == b9.Content))
-            {
-                if (b7.Content != "")
-                {
-                    MessageBox.Show("Победили " + b7.Content);
-                    checkButton();
-                }
+                state++;
             }
 
-            if ((b1.Content == b4.Content) && (b4.Content == b7.Content))
-            {
-                if (b1.Content != "")
-                {
-                    MessageBox.Show("Победили " + b1.Content);
+
+            if ((b1.Content.ToString() == "O" && b2.Content.ToString() == "O" && b3.Content.ToString() == "O") ||
+                (b4.Content.ToString() == "O" && b5.Content.ToString() == "O" && b6.Content.ToString() == "O") ||
+                (b7.Content.ToString() == "O" && b8.Content.ToString() == "O" && b9.Content.ToString() == "O") ||
+                 (b1.Content.ToString() == "O" && b5.Content.ToString() == "O" && b9.Content.ToString() == "O") ||
+                 (b3.Content.ToString() == "O" && b5.Content.ToString() == "O" && b7.Content.ToString() == "O") ||
+                 (b1.Content.ToString() == "O" && b4.Content.ToString() == "O" && b7.Content.ToString() == "O") ||
+                 (b2.Content.ToString() == "O" && b5.Content.ToString() == "O" && b8.Content.ToString() == "O") ||
+                 (b3.Content.ToString() == "O" && b6.Content.ToString() == "O" && b9.Content.ToString() == "O")
+                )
+            {             
+                    MessageBox.Show("Победили O");
                     checkButton();
-                }
+                
             }
-            if ((b2.Content == b5.Content) && (b5.Content == b8.Content))
+            if((state == 9 )&&
+                (b1.Content.ToString() != "" && b2.Content.ToString() != "" && b3.Content.ToString() != "") &&
+                (b4.Content.ToString() != "" && b5.Content.ToString() != "" && b6.Content.ToString() != "") &&
+                (b7.Content.ToString() != "" && b8.Content.ToString() != "" && b9.Content.ToString() != "") &&
+                 (b1.Content.ToString() != "" && b5.Content.ToString() != "" && b9.Content.ToString() != "") &&
+                 (b3.Content.ToString() != "" && b5.Content.ToString() != "" && b7.Content.ToString() != "") &&
+                 (b1.Content.ToString() != "" && b4.Content.ToString() != "" && b7.Content.ToString() != "") &&
+                 (b2.Content.ToString() != "" && b5.Content.ToString() != "" && b8.Content.ToString() != "") &&
+                 (b3.Content.ToString() != "" && b6.Content.ToString() != "" && b9.Content.ToString() != "")
+
+                )
             {
-                if (b2.Content != "")
-                {
-                    MessageBox.Show("Победили " + b2.Content);
-                    checkButton();
-                }
-            }
-            if ((b3.Content == b6.Content) && (b6.Content == b9.Content))
-            {
-                if (b3.Content != "")
-                {
-                    MessageBox.Show("Победили " + b3.Content);
-                    checkButton();
-                }
+                MessageBox.Show("Ничья");
+                checkButton();
             }
 
-            if ((b1.Content == b5.Content) && (b5.Content == b9.Content))
-            {
-                if (b1.Content != "")
-                {
-                    MessageBox.Show("Победили " + b1.Content);
-                    checkButton();
-                }
-            }
-            if ((b3.Content == b5.Content) && (b5.Content == b7.Content))
-            {
-                if (b3.Content != "")
-                {
-                    MessageBox.Show("Победили " + b3.Content);
-                    checkButton();
-                   
-                }
-            }
-           
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+           
             checkButton();
           
         }

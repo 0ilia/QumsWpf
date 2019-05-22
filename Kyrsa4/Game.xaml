@@ -17,7 +17,8 @@
         <Button Content="" FontSize="60"  Name="b7" FontWeight="Bold" Click="Button_Game"  HorizontalAlignment="Left" Margin="38,237,0,0" VerticalAlignment="Top" Width="100" Height="100"/>
         <Button Content="" Click="Button_Game" Name="b8" FontWeight="Bold"  HorizontalAlignment="Left" Margin="143,237,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
         <Button Content="" Click="Button_Game" Name="b9" FontWeight="Bold" HorizontalAlignment="Left" Margin="248,237,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
-        <Button Content="Начать заново" HorizontalAlignment="Left" Margin="469,27,0,0" VerticalAlignment="Top" Width="129" Height="36" Click="Button_Click"/>
+        <Button Content="Начать заново" HorizontalAlignment="Left" Margin="426,132,0,0" VerticalAlignment="Top" Width="129" Height="36" Click="Button_Click"/>
+        <Label Content="Ход X" Name="movePlayer" HorizontalAlignment="Left" Margin="426,27,0,0" VerticalAlignment="Top" Width="255"/>
 
     </Grid>
 </Window>
