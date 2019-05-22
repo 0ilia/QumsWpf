@@ -1,0 +1,23 @@
+﻿<Window x:Class="Kyrsa4.Game"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kyrsa4"
+        mc:Ignorable="d"
+        Title="Game" Height="450" Width="800" ResizeMode="CanMinimize">
+    <Grid Name="gridGame">
+        
+            <Button Name="b1" Content="" HorizontalAlignment="Left"   FontWeight="Bold" Margin="38,27,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="Button_Game" FontSize="60"/>
+            <Button  x:Name="b2" Content=""  Click="Button_Game"  FontWeight="Bold" HorizontalAlignment="Left" Margin="143,27,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60" RenderTransformOrigin="3.76,0.54"/>
+            <Button Content=""  Name="b3" Click="Button_Game"  FontWeight="Bold" HorizontalAlignment="Left" Margin="248,27,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="" Name="b4" Click="Button_Game"  FontWeight="Bold" HorizontalAlignment="Left" Margin="38,132,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="" Name="b5" Click="Button_Game"  FontWeight="Bold" HorizontalAlignment="Left" Margin="143,132,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="" Name="b6" Click="Button_Game" FontWeight="Bold" HorizontalAlignment="Left" Margin="248,132,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="" FontSize="60"  Name="b7" FontWeight="Bold" Click="Button_Game"  HorizontalAlignment="Left" Margin="38,237,0,0" VerticalAlignment="Top" Width="100" Height="100"/>
+        <Button Content="" Click="Button_Game" Name="b8" FontWeight="Bold"  HorizontalAlignment="Left" Margin="143,237,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="" Click="Button_Game" Name="b9" FontWeight="Bold" HorizontalAlignment="Left" Margin="248,237,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="60"/>
+        <Button Content="Начать заново" HorizontalAlignment="Left" Margin="469,27,0,0" VerticalAlignment="Top" Width="129" Height="36" Click="Button_Click"/>
+
+    </Grid>
+</Window>
