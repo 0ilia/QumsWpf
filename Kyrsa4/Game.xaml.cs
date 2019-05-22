@@ -22,11 +22,14 @@ namespace Kyrsa4
         }
 
         int state = 0; 
-            int player = 0;
+        int player = 0;
+        int resWinX = 0;
+        int resWinO = 0;
         private void checkButton()
         {
             player = 0;
-            state = 0; 
+            state = 0;
+            movePlayer.Content = "Ход X";
             b1.Content = "";
             b2.Content = "";
             b3.Content = "";
@@ -61,6 +64,7 @@ namespace Kyrsa4
                     sender.GetType().GetProperty("Content").SetValue(sender, "O");
                     movePlayer.Content = "Ход X";
                     player--;
+
                 }
                 sender.GetType().GetProperty("IsEnabled").SetValue(sender, false);
                 checkWin();
@@ -68,6 +72,7 @@ namespace Kyrsa4
             catch
             {
                 MessageBox.Show("Произошла ошибка");
+
             }
         }
         
@@ -85,7 +90,10 @@ namespace Kyrsa4
             {
                     MessageBox.Show("Победили X");
                     checkButton();
-                
+                resWinX++;
+                resWinXN.Content = resWinX.ToString();
+
+
             }
             else
             {
@@ -105,7 +113,9 @@ namespace Kyrsa4
             {             
                     MessageBox.Show("Победили O");
                     checkButton();
-                
+                resWinO++;
+                resWinON.Content = resWinO.ToString();
+
             }
             if((state == 9 )&&
                 (b1.Content.ToString() != "" && b2.Content.ToString() != "" && b3.Content.ToString() != "") &&
@@ -116,7 +126,6 @@ namespace Kyrsa4
                  (b1.Content.ToString() != "" && b4.Content.ToString() != "" && b7.Content.ToString() != "") &&
                  (b2.Content.ToString() != "" && b5.Content.ToString() != "" && b8.Content.ToString() != "") &&
                  (b3.Content.ToString() != "" && b6.Content.ToString() != "" && b9.Content.ToString() != "")
-
                 )
             {
                 MessageBox.Show("Ничья");
@@ -129,7 +138,10 @@ namespace Kyrsa4
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            resWinO = 0 ;
+            resWinX = 0;
+            resWinXN.Content = resWinX.ToString();
+            resWinON.Content = resWinO.ToString();
             checkButton();
           
         }

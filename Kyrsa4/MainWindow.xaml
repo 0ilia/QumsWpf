@@ -29,10 +29,6 @@
             </Setter>
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
         </Style>
-
-
-
-
     </Window.Resources>
 
     <Grid Height="Auto" Width="Auto" >
