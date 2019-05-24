@@ -65,12 +65,15 @@ namespace Kyrsa4
                     resMess.Foreground = Brushes.Green;
                     resMess.Content = "✔";
                 }
+                else
+                {
+                    resMess.Foreground = Brushes.Red;
+                    resMess.Content = "✔";
+                }
             }
             catch
             {
                 MessageBox.Show("Произошла ошибка");
-                myConnection.Close();
-
             }
             finally
             {

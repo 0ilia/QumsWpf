@@ -6,15 +6,16 @@
              xmlns:local="clr-namespace:Kyrsa4"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid KeyDown="KeyDownEnterForSend">
         <Button  Name="AddMessage" Content="Отправить" BorderBrush="SkyBlue" Background="SkyBlue" Click="Send_Button"   Foreground="White" HorizontalAlignment="Left" Margin="28,354,0,0" VerticalAlignment="Top" Width="120"  Height="30"/>
-        <TextBox HorizontalAlignment="Left" Name="Nik" Height="20" Margin="28,209,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
-        <PasswordBox HorizontalAlignment="Left" PasswordChar="*" Name="Code" Margin="28,254,0,0" VerticalAlignment="Top" Width="211" Height="20"/>
-        <TextBox HorizontalAlignment="Left" x:Name="Message" Height="54" Margin="28,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <TextBox HorizontalAlignment="Left" MaxLength="7" Name="Nik" Height="20" Margin="28,209,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <PasswordBox HorizontalAlignment="Left" MaxLength="9" PasswordChar="*" Name="Code" Margin="28,254,0,0" VerticalAlignment="Top" Width="211" Height="20"/>
+        <TextBox HorizontalAlignment="Left" MaxLength="254" x:Name="Message" Height="54" Margin="28,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
         <Label Content="Имя:" Name="LabelName"  HorizontalAlignment="Left" Margin="28,183,0,0" VerticalAlignment="Top" Width="211"/>
         <Label Content="Код:" Name="LabelCode" HorizontalAlignment="Left" Margin="28,228,0,0" VerticalAlignment="Top" Width="211"/>
         <Label Content="Сообщение:" Name="LabelMessage" HorizontalAlignment="Left" Margin="28,274,0,0" VerticalAlignment="Top" Width="211"/>
         <TextBox  Background="#D8FFFF"  Name="resMessage" HorizontalAlignment="Left" Height="242"  Margin="259,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="493" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Grid.ColumnSpan="2" IsReadOnly="True"/>
         <Label Content="" FontSize="20" Name="resMess" HorizontalAlignment="Left" Margin="148,348,0,0" VerticalAlignment="Top" Height="43" Width="40"/>
+        <Label Content="" Foreground="Red" Name="messageError"  HorizontalAlignment="Left" Margin="28,389,0,0" VerticalAlignment="Top" Width="724"/>
     </Grid>
 </UserControl>

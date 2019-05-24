@@ -24,21 +24,27 @@ namespace Kyrsa4
         {
             InitializeComponent();
         }
-
+        private void KeyDownEnterForSend(object sender , KeyEventArgs e )
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddMessage.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+        }
         private void Send_Button(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 myConnection.Open();
                 string CountRow = "SELECT COUNT(*) from message";
                 MySqlCommand CoutRowQ = new MySqlCommand(CountRow, myConnection);
                 int CountRowTableMesssage = int.Parse(CoutRowQ.ExecuteScalar().ToString());
-
-                string name = Nik.Text;
+                string name = Nik.Text.ToString();
                 name = string.Join(" ", name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                string message = Message.Text;
+                string message = Message.Text.ToString();
                 message = string.Join(" ", message.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                string code = Code.Password;
+                string code = Code.Password.ToString();
                 code = string.Join(" ", code.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                 if (name == "")
                 {
@@ -46,16 +52,26 @@ namespace Kyrsa4
                 }
                 if ((code.Length > 4) && (code.Length < 10) && (message.Length > 1) && (message.Length < 255))
                 {
-                    string AddMessage = "INSERT INTO message (id, name, code,text_message) VALUES (" + ++CountRowTableMesssage + ", '" + name + "', '" + code + "','" + message + "')";
-
+                    string AddMessage = "INSERT INTO message (id, name, code,text_message) VALUES (" + ++CountRowTableMesssage + ", '" + name.ToString() + "', '" + code.ToString() + "','" + message.ToString() + "')";
                     MySqlCommand commandAddMessage = new MySqlCommand(AddMessage, myConnection);
                     commandAddMessage.ExecuteScalar();
-                   
+                }
+                else
+                {
+                    if((code != "") && (code.Length <5)||(code.Length>9))
+                    {
+                        messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
+                    }
+                    if (((message.Length > 254)||(message.Length < 2))&&(message != ""))
+                    {
+                        messageError.Content = "Длина сообщения не должна быть меньше 2 символов и больше 254";
+                       
+                    }
                 }
                 int state = 0;
                 if ((code.Length > 4) && (code.Length < 10))
                 {
-                    string ShowMessage = "SELECT name, text_message FROM message WHERE code =" + code;
+                    string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + code.ToString() + "'";
                     MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, myConnection);
                     MySqlDataReader reader = commandShowMessage.ExecuteReader();
                     resMessage.Text = "";
@@ -67,23 +83,30 @@ namespace Kyrsa4
                     }
                     reader.Close();
                 }
-                if (state > 0)
-                {
-                    resMess.Foreground = Brushes.Green;
-                    resMess.Content = "✔";
-                    Message.Text = "";
-                }
                 else
                 {
-                    resMess.Foreground = Brushes.Red;
-                    resMess.Content = "✖";
+                    if ((code != "") && ((code.Length > 4) || (code.Length < 10)))
+                    {
+                        messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
+                    }
+                }
+                if ((state > 0)&&(message.Length > 1))
+                {
+                    resMess.Foreground = Brushes.Green;
+                    messageError.Content = "";
+                    resMess.Content = "✔";
+                    Message.Focus();
+                    Message.Text = "";
+                }
+                else if((code.Length < 10) && (code != "")&& (message == "") && (code.Length > 4)&&(resMessage.Text == ""))
+                {
+                    messageError.Content = "Сообщений не найдено";
                 }
             }
             catch
             {
                 resMess.Foreground = Brushes.Red;
                 resMess.Content = "✖";
-                myConnection.Close();
 
             }
             finally
