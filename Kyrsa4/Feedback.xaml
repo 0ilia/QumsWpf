@@ -6,12 +6,15 @@
              xmlns:local="clr-namespace:Kyrsa4"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label Content="Тема:" Name="LabelTheam" HorizontalAlignment="Left" Margin="275,157,0,0" VerticalAlignment="Top" Width="211" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-        <TextBox HorizontalAlignment="Left" Name="TheamMail" Height="23" Margin="275,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+    <Grid KeyDown="KeyDownEnterForSend">
+        <Label Content="Тема:" Name="LabelTheam" HorizontalAlignment="Left" Margin="275,103,0,0" VerticalAlignment="Top" Width="211" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+        <TextBox HorizontalAlignment="Left" MaxLength="25"  Name="TheamMail" Height="23" Margin="275,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
         <Label Content="Сообщение:" Name="LabelMessageMail" HorizontalAlignment="Left" Margin="275,211,0,0" VerticalAlignment="Top" Width="211"/>
-        <TextBox HorizontalAlignment="Left" Name="MessageMail" Height="77" Margin="275,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <TextBox HorizontalAlignment="Left" MaxLength="200" Name="MessageMail" Height="77" Margin="275,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
         <Button Content="Отправить" Name="MailSend"  BorderBrush="SkyBlue" Background="SkyBlue" HorizontalAlignment="Left" Margin="275,317,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="MailSend_Click"/>
         <Label FontSize="20"  HorizontalAlignment="Center" Content="" Name="resMess" Margin="395,311,365,0" VerticalAlignment="Top" Height="43" Width="40"/>
+        <Label Content="" Name="ErrorsSendMail" Foreground="Red" HorizontalAlignment="Left" Margin="215,352,0,0" VerticalAlignment="Top" Width="429"/>
+        <Label Content="E-mail" x:Name="LabelE_mail" HorizontalAlignment="Left" Margin="275,157,0,0" VerticalAlignment="Top" Width="211" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+        <TextBox HorizontalAlignment="Left" MaxLength="25"  x:Name="E_mail_TextBox" Height="23" Margin="275,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
     </Grid>
 </UserControl>
