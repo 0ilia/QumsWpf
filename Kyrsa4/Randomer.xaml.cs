@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Kyrsa4
 {
-    /// <summary>
-    /// Логика взаимодействия для Randomer.xaml
-    /// </summary>
     public partial class Randomer : UserControl
     {
         public Randomer()
@@ -41,9 +38,13 @@ namespace Kyrsa4
                     countNumbers.Text = "1";
                 }
                 RandomNumbers.Text = "";
+                int count = int.Parse(countNumbers.Text.ToString());
                 if (RandomNumbers1.Text.ToString() == "" && RandomNumbers2.Text.ToString() == "")
                 {
-                    RandomNumbers.Text = R.Next().ToString();
+                    for (int i = 0; i < count; i++)
+                    {
+                        RandomNumbers.Text += R.Next().ToString()+" ";
+                    }
                     goto logoutCheckErrors;
                 }
                 
@@ -60,7 +61,7 @@ namespace Kyrsa4
                     
                     int numb2 = int.Parse(RandomNumbers2.Text.ToString());
                     int temp = numb2;
-                    int count = int.Parse(countNumbers.Text.ToString());
+                   
                     if (numb1>numb2)
                     {
                         numb2 = numb1;
@@ -75,11 +76,11 @@ namespace Kyrsa4
                     for (int i = 0; i < count; i++)
                     {
                           RandomNumbers.Text += R.Next(numb1, numb2).ToString() + " ";
-                       // RandomNumbers.Text += "SAD";
                     }
                 }
             logoutCheckErrors:;
             }
+                
             catch
             {
                 MessageBox.Show("Произошла ошибка");
@@ -90,9 +91,6 @@ namespace Kyrsa4
         {
             TextBox ctrl = sender as TextBox;
             e.Handled = "-0123456789".IndexOf(e.Text) < 0;//только цифры
-           
         }
-
-        
     }
 }

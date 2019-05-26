@@ -27,8 +27,10 @@ namespace Kyrsa4
         int resWinX = 0;
         int checkCountButton = 0;
         int resWinO = 0;
+        bool win = false;
         private void checkButton()
         {
+            win = false;
             checkCountButton = 0;
             player = 0;
             state = 0;
@@ -70,21 +72,34 @@ namespace Kyrsa4
                 sender.GetType().GetProperty("Content").SetValue(sender, "X");
                 sender.GetType().GetProperty("IsEnabled").SetValue(sender, false);
                 checkCountButton++;
-            clickButton:
-                int Ran = rand.Next(0, 9);
-
-                if (button[Ran].IsEnabled == true)
-                {
-                    button[Ran].GetType().GetProperty("Content").SetValue(button[Ran], "O");
-                    button[Ran].GetType().GetProperty("IsEnabled").SetValue(button[Ran], false);
-                    checkCountButton++;
-                    checkWin();
-                }
-                else if (checkCountButton != 9)
-                {
-                    goto clickButton;
-                }
                 checkWin();
+                if(win == false && checkCountButton > 0) {
+                    if (b5.IsEnabled == true)
+                    {
+                        button[4].GetType().GetProperty("Content").SetValue(button[4], "O");
+                        button[4].GetType().GetProperty("IsEnabled").SetValue(button[4], false);
+                        checkCountButton++;
+
+                    }
+                    else
+                    {
+                    clickButton:
+                        int Ran = rand.Next(0, 9);
+
+                        if (button[Ran].IsEnabled == true)
+                        {
+                            button[Ran].GetType().GetProperty("Content").SetValue(button[Ran], "O");
+                            button[Ran].GetType().GetProperty("IsEnabled").SetValue(button[Ran], false);
+                            checkCountButton++;
+                            checkWin();
+                        }
+                        else if (checkCountButton != 9)
+                        {
+                            goto clickButton;
+                        }
+                    }
+                }
+                
             }
             catch
             {
@@ -104,7 +119,7 @@ namespace Kyrsa4
                  (b3.Content.ToString() == "X" && b6.Content.ToString() == "X" && b9.Content.ToString() == "X")
                 )
             {
-             
+                win = true;
                 MessageBox.Show("Победили X");
                 checkButton();
                 resWinX++;
@@ -128,7 +143,7 @@ namespace Kyrsa4
                  (b3.Content.ToString() == "O" && b6.Content.ToString() == "O" && b9.Content.ToString() == "O")
                 )
             {
-                
+                win = true;
                 MessageBox.Show("Победили O");
                 checkButton();
                 resWinO++;

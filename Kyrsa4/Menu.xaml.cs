@@ -100,16 +100,17 @@ namespace Kyrsa4
         
         private void MenuLoad(object sender, RoutedEventArgs e)
         {
-           /* DispatcherTimer dispatcherTimer = new DispatcherTimer();
+          /*  DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();*/
-        }
+            dispatcherTimer.Start();
+       
+    */}
         
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-          //  DateTime T = DateTime.Now;
-           // clock.Text = T.Hour.ToString()+":"+T.Minute.ToString()+":"+T.Second.ToString();
+            DateTime T = DateTime.Now;
+            clock.Text = T.Hour.ToString()+":"+T.Minute.ToString()+":"+T.Second.ToString();
         }
     }
 }

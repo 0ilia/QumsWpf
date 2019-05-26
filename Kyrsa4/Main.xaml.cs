@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
-
+using System.Security.Cryptography;
 namespace Kyrsa4
 {
     public partial class Main : UserControl
@@ -33,27 +33,35 @@ namespace Kyrsa4
         }
         private string correctTextBox(string NameTextBox = "")
         {
-            // string theammail = "";
             string theammail = NameTextBox;
             theammail = string.Join(" ", theammail.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
             return theammail;
+        }
+        const string saltForMD5 = "KLdj1KQ33~QPT7@Rj#";
+        private string Getmd5()
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+
+            byte[] raw_input = Encoding.UTF32.GetBytes(saltForMD5 +"Hello");
+            byte[] raw_output = md5.ComputeHash(raw_input);
+
+            string output = "";
+            foreach (byte myByte in raw_output)
+                output += myByte.ToString("X2").ToLower();
+            
+
+            return output;
         }
         private void Send_Button(object sender, RoutedEventArgs e)
         {
 
             try
             {
+                MessageBox.Show(Getmd5());
                 myConnection.Open();
                 string CountRow = "SELECT COUNT(*) from message";
                 MySqlCommand CoutRowQ = new MySqlCommand(CountRow, myConnection);
                 int CountRowTableMesssage = int.Parse(CoutRowQ.ExecuteScalar().ToString());
-
-                /*string name = Nik.Text.ToString();
-                name = string.Join(" ", name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                string message = Message.Text.ToString();
-                message = string.Join(" ", message.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                string code = Code.Password.ToString();
-                code = string.Join(" ", code.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));*/
                 string name = correctTextBox(Nik.Text.ToString());
                 string message = correctTextBox(Message.Text.ToString());
                 string code = correctTextBox(Code.Password.ToString());
@@ -128,6 +136,6 @@ namespace Kyrsa4
                 myConnection.Close();
 
             }
-        }
+        }      
     }
 }

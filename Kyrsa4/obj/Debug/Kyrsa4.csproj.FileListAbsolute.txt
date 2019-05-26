@@ -1,7 +1,6 @@
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\bin\Debug\Kyrsa4.exe.config
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\bin\Debug\Kyrsa4.exe
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\bin\Debug\Kyrsa4.pdb
-D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Kyrsa4.csprojAssemblyReference.cache
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\MainWindow.g.cs
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\App.g.cs
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Kyrsa4_MarkupCompile.cache
@@ -31,3 +30,4 @@ D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Game.g.cs
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Game.baml
 D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Randomer.g.cs
 D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Randomer.baml
+D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Kyrsa4.csprojAssemblyReference.cache
