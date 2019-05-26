@@ -38,11 +38,11 @@ namespace Kyrsa4
             return theammail;
         }
         const string saltForMD5 = "KLdj1KQ33~QPT7@Rj#";
-        private string Getmd5()
+        private string Getmd5(string code)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
 
-            byte[] raw_input = Encoding.UTF32.GetBytes(saltForMD5 +"Hello");
+            byte[] raw_input = Encoding.UTF32.GetBytes(saltForMD5 + code);
             byte[] raw_output = md5.ComputeHash(raw_input);
 
             string output = "";
@@ -57,7 +57,6 @@ namespace Kyrsa4
 
             try
             {
-                MessageBox.Show(Getmd5());
                 myConnection.Open();
                 string CountRow = "SELECT COUNT(*) from message";
                 MySqlCommand CoutRowQ = new MySqlCommand(CountRow, myConnection);
@@ -68,11 +67,11 @@ namespace Kyrsa4
 
                 if (name == "")
                 {
-                    name = "Anonymous";
+                    name = "Аноним";
                 }
                 if ((code.Length > 4) && (code.Length < 10) && (message.Length > 1) && (message.Length < 255))
                 {
-                    string AddMessage = "INSERT INTO message (id, name, code,text_message) VALUES (" + ++CountRowTableMesssage + ", '" + name.ToString() + "', '" + code.ToString() + "','" + message.ToString() + "')";
+                    string AddMessage = "INSERT INTO message (id, name, code,text_message) VALUES (" + ++CountRowTableMesssage + ", '" + name.ToString() + "', '" + Getmd5(code) + "','" + message.ToString() + "')";
                     MySqlCommand commandAddMessage = new MySqlCommand(AddMessage, myConnection);
                     commandAddMessage.ExecuteScalar();
                 }
@@ -93,7 +92,7 @@ namespace Kyrsa4
                 if ((code.Length > 4) && (code.Length < 10))
                 {
                     messageError.Content = "";
-                    string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + code.ToString() + "'";
+                    string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + Getmd5(code) + "'";
                     MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, myConnection);
                     MySqlDataReader reader = commandShowMessage.ExecuteReader();
                     resMessage.Text = "";

@@ -70,11 +70,7 @@ namespace Kyrsa4
             }
         }
 
-        private void MenuItem_Game(object sender, RoutedEventArgs e)
-        {
-            Game game = new Game();
-            game.Show();
-        }
+       
 
         private void Randomer_Window(object sender, RoutedEventArgs e)
         {

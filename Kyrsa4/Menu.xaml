@@ -11,7 +11,7 @@
             <Image Source="Resources/Img/logo.png" Height="92" Width="112"  Margin="0,5"  />
             <Button  Content="Главная" Foreground="White" Width="100" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#00000000" Height="38" x:Name="Main" VerticalAlignment="Center" Click="MenuItem_Main" BorderThickness="0"/>
             <Button  x:Name="FeedBack" Content="Обратная связь"   Foreground="White" Width="100" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="38" Background="#00000000" Focusable="False" VerticalAlignment="Center" Click="MenuItem_FeedBack" BorderThickness="0" />
-            <Button  x:Name="Game"  Content="Крестики-нолики" Foreground="White" Width="147" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="38" Background="#00000000" Focusable="False" VerticalAlignment="Center" Click="MenuItem_Game" BorderThickness="0" Margin="0,32" />
+            
             <Button  x:Name="Randomer"  Content="Рандомер" Foreground="White" Width="85" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="38" Background="#00000000" Focusable="False" VerticalAlignment="Center" Click="Randomer_Window" BorderThickness="0" Margin="0,32" />
             <TextBlock TextWrapping="Wrap" Name="clock" Foreground="Wheat" FontSize="50" Text="" Width="250" VerticalAlignment="Center" TextAlignment="Center"/>
         </StackPanel>

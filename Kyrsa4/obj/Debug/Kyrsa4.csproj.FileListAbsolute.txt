@@ -26,8 +26,6 @@ D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Feedback.baml
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Main.baml
 D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Menu.baml
-D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Game.g.cs
-D:\c Windows7\ООП\Kyrsa4\Kyrsa4\obj\Debug\Game.baml
 D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Randomer.g.cs
 D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Randomer.baml
 D:\c Windows7\ООП\kyrsa4\Kyrsa4\obj\Debug\Kyrsa4.csprojAssemblyReference.cache
