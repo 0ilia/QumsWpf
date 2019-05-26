@@ -14,7 +14,7 @@
         <Label Content="Имя:" Name="LabelName"  HorizontalAlignment="Left" Margin="28,183,0,0" VerticalAlignment="Top" Width="211"/>
         <Label Content="Код:" Name="LabelCode" HorizontalAlignment="Left" Margin="28,228,0,0" VerticalAlignment="Top" Width="211"/>
         <Label Content="Сообщение:" Name="LabelMessage" HorizontalAlignment="Left" Margin="28,274,0,0" VerticalAlignment="Top" Width="211"/>
-        <TextBox  Background="#D8FFFF"  Name="resMessage" HorizontalAlignment="Left" Height="242"  Margin="259,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="493" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Grid.ColumnSpan="2" IsReadOnly="True"/>
+        <TextBox  Background="#D8FFFF"  Name="resMessage" HorizontalAlignment="Left" Height="242"  Margin="259,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="493" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Grid.ColumnSpan="2" IsReadOnly="True"/>
         <Label Content="" FontSize="20" Name="resMess" HorizontalAlignment="Left" Margin="148,348,0,0" VerticalAlignment="Top" Height="43" Width="40"/>
         <Label Content="" Foreground="Red" Name="messageError"  HorizontalAlignment="Left" Margin="28,389,0,0" VerticalAlignment="Top" Width="724"/>
     </Grid>
