@@ -10,7 +10,7 @@
         <Button Content="Сгенерировать" Background="Salmon" FontSize="35" HorizontalAlignment="Center" Margin="263,294,244,80" VerticalAlignment="Center" Width="293" Height="76" HorizontalContentAlignment="Center" FontStyle="Italic" VerticalContentAlignment="Center" BorderThickness="0" Name="Random" Click="Random_Click"/>
         <TextBox HorizontalAlignment="Left" MaxLength="9" Name="RandomNumbers1" Height="23" Margin="263,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" PreviewTextInput="OnlyNumber_Input" />
         <Label HorizontalAlignment="Left" Margin="306,143,0,0" VerticalAlignment="Top"/>
-        <TextBox Background="#D8FFFF" Name="RandomNumbers" Height="169" FontSize="20" Margin="10,120,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="1" VerticalScrollBarVisibility="Auto"/>
+        <TextBox Background="#D8FFFF" Name="RandomNumbers" Height="169" FontSize="20" Margin="10,120,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="1" VerticalScrollBarVisibility="Auto"/>
         <Label Content="Диапазон" HorizontalAlignment="Left" Margin="122,375,0,0" VerticalAlignment="Top" Width="69"/>
         <TextBox HorizontalAlignment="Left" MaxLength="9" Name="RandomNumbers2" PreviewTextInput="OnlyNumber_Input" Height="23" Margin="385,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98"/>
         <Label Content="от" HorizontalAlignment="Left" Margin="230,375,0,0" VerticalAlignment="Top" Width="24" HorizontalContentAlignment="Center"/>

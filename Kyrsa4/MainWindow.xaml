@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kyrsa4"
         mc:Ignorable="d"
-        Title="Безопасное общение. Анонимный мессенджер"  Height="450" Width="800" Background="#D8FFFF" ResizeMode="CanMinimize">
+        Title="Безопасное общение. Анонимный мессенджер"  Height="450" Width="800" Background="#D8FFFF" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Style.Triggers>

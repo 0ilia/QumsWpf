@@ -13,7 +13,7 @@
             <Button  x:Name="FeedBack" Content="Обратная связь"   Foreground="White" Width="100" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="38" Background="#00000000" Focusable="False" VerticalAlignment="Center" Click="MenuItem_FeedBack" BorderThickness="0" />
             
             <Button  x:Name="Randomer"  Content="Рандомер" Foreground="White" Width="85" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="38" Background="#00000000" Focusable="False" VerticalAlignment="Center" Click="Randomer_Window" BorderThickness="0" Margin="0,32" />
-            <TextBlock TextWrapping="Wrap" Name="clock" Foreground="Wheat" FontSize="50" Text="" Width="250" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap"  x:Name="clock" Foreground="Wheat" FontSize="50" Text="" Width="250" VerticalAlignment="Center" TextAlignment="Center" Margin="140,18,0,17"/>
         </StackPanel>
     </Grid>
 </UserControl>
