@@ -76,18 +76,17 @@ namespace Kyrsa4
                     if((code.Length <5)||(code.Length>9))
                     {
                         messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
-                        goto logoutCheckErrorsMessage;
+                        //goto logoutCheckErrorsMessage;
                     }
                     if (((message.Length > 254)||(message.Length < 2))&&(message != ""))
                     {
                         messageError.Content = "Длина сообщения не должна быть меньше 2 символов и больше 254";
                     }
-                logoutCheckErrorsMessage:;
+                //logoutCheckErrorsMessage:;
                 }
                 int state = 0;
                 if ((code.Length > 4) && (code.Length < 10))
-                {
-                    messageError.Content = "";
+                {               
                     string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + Getmd5(code) + "'";
                     MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, BD.myConnection);
                     MySqlDataReader reader = commandShowMessage.ExecuteReader();
@@ -109,6 +108,7 @@ namespace Kyrsa4
                 }
                 if ((state > 0)&&(message.Length > 1))
                 {
+                    messageError.Content = "";
                     resMess.Foreground = Brushes.Green;
                     messageError.Content = "";
                     resMess.Content = "✔";
