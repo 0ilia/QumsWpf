@@ -70,6 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AreCommonMethod.cs" />
+    <Compile Include="ConnectBD.cs" />
     <Compile Include="Randomer.xaml.cs">
       <DependentUpon>Randomer.xaml</DependentUpon>
     </Compile>

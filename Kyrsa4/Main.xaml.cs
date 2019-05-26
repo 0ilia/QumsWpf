@@ -18,8 +18,9 @@ namespace Kyrsa4
 {
     public partial class Main : UserControl
     {
-        static string Connect = "server=localhost;user=root;database=qums;password=;";
-        static MySqlConnection myConnection = new MySqlConnection(Connect);
+        ConnectBD BD = new ConnectBD();
+        AreCommonMethod arecommonmethod = new AreCommonMethod();
+        
         public Main()
         {
             InitializeComponent();
@@ -31,12 +32,7 @@ namespace Kyrsa4
                 AddMessage.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
-        private string correctTextBox(string NameTextBox = "")
-        {
-            string theammail = NameTextBox;
-            theammail = string.Join(" ", theammail.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-            return theammail;
-        }
+       
         const string saltForMD5 = "KLdj1KQ33~QPT7@Rj#";
         private string Getmd5(string code)
         {
@@ -57,13 +53,13 @@ namespace Kyrsa4
 
             try
             {
-                myConnection.Open();
+                BD.myConnection.Open();
                 string CountRow = "SELECT COUNT(*) from message";
-                MySqlCommand CoutRowQ = new MySqlCommand(CountRow, myConnection);
+                MySqlCommand CoutRowQ = new MySqlCommand(CountRow, BD.myConnection);
                 int CountRowTableMesssage = int.Parse(CoutRowQ.ExecuteScalar().ToString());
-                string name = correctTextBox(Nik.Text.ToString());
-                string message = correctTextBox(Message.Text.ToString());
-                string code = correctTextBox(Code.Password.ToString());
+                string name = arecommonmethod.correctTextBox(Nik.Text.ToString());
+                string message = arecommonmethod.correctTextBox(Message.Text.ToString());
+                string code = arecommonmethod.correctTextBox(Code.Password.ToString());
 
                 if (name == "")
                 {
@@ -72,7 +68,7 @@ namespace Kyrsa4
                 if ((code.Length > 4) && (code.Length < 10) && (message.Length > 1) && (message.Length < 255))
                 {
                     string AddMessage = "INSERT INTO message (id, name, code,text_message) VALUES (" + ++CountRowTableMesssage + ", '" + name.ToString() + "', '" + Getmd5(code) + "','" + message.ToString() + "')";
-                    MySqlCommand commandAddMessage = new MySqlCommand(AddMessage, myConnection);
+                    MySqlCommand commandAddMessage = new MySqlCommand(AddMessage, BD.myConnection);
                     commandAddMessage.ExecuteScalar();
                 }
                 else
@@ -93,7 +89,7 @@ namespace Kyrsa4
                 {
                     messageError.Content = "";
                     string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + Getmd5(code) + "'";
-                    MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, myConnection);
+                    MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, BD.myConnection);
                     MySqlDataReader reader = commandShowMessage.ExecuteReader();
                     resMessage.Text = "";
                   
@@ -132,7 +128,7 @@ namespace Kyrsa4
             }
             finally
             {
-                myConnection.Close();
+                BD.myConnection.Close();
 
             }
         }      

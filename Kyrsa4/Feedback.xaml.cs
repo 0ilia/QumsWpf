@@ -20,33 +20,15 @@ namespace Kyrsa4
 {
     public partial class Feedback : UserControl
     {
-        static string Connect = "server=localhost;user=root;database=qums;password=;";
-        static MySqlConnection myConnection = new MySqlConnection(Connect);
+        ConnectBD BD = new ConnectBD();
+        AreCommonMethod arecommonmethod = new AreCommonMethod();
 
         public Feedback()
         {
             InitializeComponent();
         }
-        public bool IsValid(string emailaddress)
-        {
-            try
-            {
-                MailAddress m = new MailAddress(emailaddress);
-
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
-        private string correctTextBox(string NameTextBox = "")
-        {
-           // string theammail = "";
-            string  theammail = NameTextBox;
-            theammail = string.Join(" ", theammail.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-            return theammail;
-        }
+        
+       
         private void KeyDownEnterForSend(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -58,24 +40,12 @@ namespace Kyrsa4
         {
             try
             {
-             
+                BD.myConnection.Open();
+                string theammail = arecommonmethod.correctTextBox(TheamMail.Text);
+                string messagemail = arecommonmethod.correctTextBox(MessageMail.Text);
+                string EmailTextBox = arecommonmethod.correctTextBox(E_mail_TextBox.Text);
 
-                myConnection.Open();
-                /*
-                string theammail = TheamMail.Text;
-                theammail = string.Join(" ", theammail.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                string messagemail = MessageMail.Text;
-                messagemail = string.Join(" ", messagemail.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-
-                string EmailTextBox = E_mail_TextBox.Text;
-                EmailTextBox = string.Join(" ", EmailTextBox.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-
-                */
-                string theammail = correctTextBox(TheamMail.Text);
-                string messagemail = correctTextBox(MessageMail.Text);
-                string EmailTextBox = correctTextBox(E_mail_TextBox.Text);
-
-                if ((theammail.Length < 26) && (messagemail.Length < 201) && (theammail.Length > 3) && (messagemail.Length > 6)&& (IsValid(E_mail_TextBox.ToString())==true))
+                if ((theammail.Length < 26) && (messagemail.Length < 201) && (theammail.Length > 3) && (messagemail.Length > 6)&& (arecommonmethod.IsValid(E_mail_TextBox.ToString())==true))
                 {
                     IPHostEntry host;
                     string localIP = "?";
@@ -88,15 +58,13 @@ namespace Kyrsa4
                         }
                     }
                     string CountRow = "SELECT COUNT(*) from mail";
-                    MySqlCommand CoutRowQ = new MySqlCommand(CountRow, myConnection);
+                    MySqlCommand CoutRowQ = new MySqlCommand(CountRow, BD.myConnection);
                     int CountRowTableMail = int.Parse(CoutRowQ.ExecuteScalar().ToString());
 
                     string AddEmailBD = "INSERT INTO mail (id, theam, text_message,date_n,ip,email_from) VALUES (" + ++CountRowTableMail + ", '" + theammail.ToString() + "', '" + messagemail.ToString() + "','" + DateTime.Now
                     + "','" + localIP + "','"+ EmailTextBox.ToString()+"')";
-
-                    MySqlCommand commandAddEmailBD = new MySqlCommand(AddEmailBD, myConnection);
+                    MySqlCommand commandAddEmailBD = new MySqlCommand(AddEmailBD, BD.myConnection);
                     commandAddEmailBD.ExecuteScalar();
-
                     TheamMail.Text = "";
                     MessageMail.Text = "";
                     E_mail_TextBox.Text = "";
@@ -106,7 +74,6 @@ namespace Kyrsa4
                 }
                 else
                 {
-                    
                     resMess.Foreground = Brushes.Red;
                     resMess.Content = "✖";
                     if ((theammail.Length > 25) || (theammail.Length < 4))
@@ -114,7 +81,7 @@ namespace Kyrsa4
                         ErrorsSendMail.Content = "Длина темы должна быть больше 3 и меньшн 26";
                         goto logoutCheckErrorsEmail;
                     }
-                    if(IsValid(E_mail_TextBox.ToString()) != true)
+                    if(arecommonmethod.IsValid(E_mail_TextBox.ToString()) != true)
                     {
                         ErrorsSendMail.Content = "Ввести корректный email";
                         goto logoutCheckErrorsEmail;
@@ -132,7 +99,7 @@ namespace Kyrsa4
             }
             finally
             {
-                myConnection.Close();
+                BD.myConnection.Close();
 
             }
         }
