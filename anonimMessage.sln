@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyrsa4", "Kyrsa4\Kyrsa4.csproj", "{EC26CF80-D7CE-4E34-ADF7-B2E8B050552A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anonimMessage", "Kyrsa4\anonimMessage.csproj", "{EC26CF80-D7CE-4E34-ADF7-B2E8B050552A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

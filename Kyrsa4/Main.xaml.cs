@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using System.Windows.Threading;
 using System.Security.Cryptography;
 namespace Kyrsa4
 {
@@ -20,7 +21,7 @@ namespace Kyrsa4
     {
         ConnectBD BD = new ConnectBD();
         AreCommonMethod arecommonmethod = new AreCommonMethod();
-        
+     
         public Main()
         {
             InitializeComponent();
@@ -48,19 +49,71 @@ namespace Kyrsa4
 
             return output;
         }
-        private void Send_Button(object sender, RoutedEventArgs e)
+       
+        private void CheckNewMessaeBD(object sender, EventArgs e)
+        {
+            try
+            {
+                BD.myConnection.Open();
+                string name = arecommonmethod.correctTextBox(Nik.Text.ToString());
+                string message = arecommonmethod.correctTextBox(Message.Text.ToString());
+                string code = arecommonmethod.correctTextBox(Code.Password.ToString());
+                if ((code.Length > 4) && (code.Length < 10))
+                {
+                    string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + Getmd5(code) + "'";
+                    MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, BD.myConnection);
+                    MySqlDataReader reader = commandShowMessage.ExecuteReader();
+                    resMessage.Text = "";
+
+                    while (reader.Read())
+                    {
+                        resMessage.Text += reader[0].ToString() + ": " + reader[1].ToString() + Environment.NewLine;
+                        state++;
+                    }
+                    reader.Close();
+                }
+                else
+                {
+                    if ((code != "") && ((code.Length > 4) || (code.Length < 10)))
+                    {
+                        messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                BD.myConnection.Close();
+            }
+        }
+        int state = 0;
+        private void Send_Button(object sender, RoutedEventArgs x)
         {
 
             try
             {
                 BD.myConnection.Open();
+                if (state == 0)
+                {
+                    DispatcherTimer dispatcherTimer = new DispatcherTimer();
+                    dispatcherTimer.Tick += new EventHandler(CheckNewMessaeBD);
+                    dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                    dispatcherTimer.Start();
+                    state++;
+                }
+
+
                 string CountRow = "SELECT COUNT(*) from message";
                 MySqlCommand CoutRowQ = new MySqlCommand(CountRow, BD.myConnection);
                 int CountRowTableMesssage = int.Parse(CoutRowQ.ExecuteScalar().ToString());
                 string name = arecommonmethod.correctTextBox(Nik.Text.ToString());
                 string message = arecommonmethod.correctTextBox(Message.Text.ToString());
                 string code = arecommonmethod.correctTextBox(Code.Password.ToString());
-
+                bool flag = true;
                 if (name == "")
                 {
                     name = "Аноним";
@@ -73,53 +126,35 @@ namespace Kyrsa4
                 }
                 else
                 {
-                    if((code.Length <5)||(code.Length>9))
+                    if ((code.Length < 5) || (code.Length > 9))
                     {
                         messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
-                        //goto logoutCheckErrorsMessage;
+                        flag = false;
+                        goto logoutCheckErrorsMessage;
                     }
-                    if (((message.Length > 254)||(message.Length < 2))&&(message != ""))
+                    if (((message.Length > 254) || (message.Length < 2)) && (message != ""))
                     {
                         messageError.Content = "Длина сообщения не должна быть меньше 2 символов и больше 254";
+                        flag = false;
                     }
-                //logoutCheckErrorsMessage:;
+                logoutCheckErrorsMessage:;
                 }
-                int state = 0;
-                if ((code.Length > 4) && (code.Length < 10))
-                {               
-                    string ShowMessage = "SELECT name, text_message FROM message WHERE code = '" + Getmd5(code) + "'";
-                    MySqlCommand commandShowMessage = new MySqlCommand(ShowMessage, BD.myConnection);
-                    MySqlDataReader reader = commandShowMessage.ExecuteReader();
-                    resMessage.Text = "";
-                  
-                    while (reader.Read())
-                    {
-                         resMessage.Text += reader[0].ToString() + ": " + reader[1].ToString() + Environment.NewLine;
-                        state++; 
-                    }
-                    reader.Close();
-                }
-                else
-                {
-                    if ((code != "") && ((code.Length > 4) || (code.Length < 10)))
-                    {
-                        messageError.Content = "Длина кода не должна быть больше 9 символов и меньше 5 ";
-                    }
-                }
-                if ((state > 0)&&(message.Length > 1))
+
+                if (flag == true)
                 {
                     messageError.Content = "";
                     resMess.Foreground = Brushes.Green;
-                    messageError.Content = "";
                     resMess.Content = "✔";
                     Message.Focus();
                     Message.Text = "";
                 }
-                else if((code.Length < 10) && (code != "")&& (message == "") && (code.Length > 4)&&(resMessage.Text == ""))
+                else
                 {
-                    messageError.Content = "Сообщений не найдено";
+
                 }
             }
+               
+            
             catch
             {
                 resMess.Foreground = Brushes.Red;
